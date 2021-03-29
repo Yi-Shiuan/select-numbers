@@ -22,8 +22,12 @@ describe("number select reducer test", () => {
     });
 
     it('select number 2 should number 2 be not zero', (): void => {
-        const result = selectNumberReducer(state, {type: "SELECT_NUMBER_EVENT", line: 2, number: 0})
+        const result = selectNumberReducer(state, {type: "SELECT_NUMBER_EVENT", line: 2, number: 2})
         expect(result["2"]).toBe(1);
     });
 
+    it('select number 3 should number 3 be not zero', (): void => {
+        const result = selectNumberReducer(state, {type: "SELECT_NUMBER_EVENT", line: 3, number: 3})
+        expect(result["3"]).toBe(1);
+    });
 });

@@ -15,7 +15,7 @@ export const selectNumberReducer = (state:{ [index: string]: number } = initStat
         case "SELECT_NUMBER_EVENT":
             return {
                 ...state,
-               [action.line]: 1
+               [action.number]: 1
             }
         default:
             return initState;
