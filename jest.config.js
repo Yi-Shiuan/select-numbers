@@ -7,7 +7,7 @@ module.exports = {
     // to transform jsx into js rather than leaving it jsx such as the next build requires.  you
     // can see this setting in tsconfig.jest.json -> "jsx": "react"
     "ts-jest": {
-      tsConfig: "tsconfig.jest.json"
+      tsconfig: "tsconfig.jest.json"
     }
   },
   // All imported modules in your tests should be mocked automatically
@@ -176,8 +176,8 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
-    '^.*\\.ts?$': 'ts-jest'
+    '^.+\\.[jt]sx?$': 'ts-jest',
+    '^.*\\.[jt]s?$': 'ts-jest'
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
@@ -186,7 +186,10 @@ module.exports = {
   // ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
-  // unmockedModulePathPatterns: undefined,
+  "unmockedModulePathPatterns": [
+    "node_modules/react/",
+    "node_modules/enzyme/"
+  ],
 
   // Indicates whether each individual test should be reported during the run
   // verbose: undefined,
