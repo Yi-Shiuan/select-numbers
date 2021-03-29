@@ -7,7 +7,8 @@ const initState: { [index: string]: number } = {
     "6": 0,
     "7": 0,
     "8": 0,
-    "9": 0
+    "9": 0,
+    "10": 0
 }
 
 export const selectNumberReducer = (state:{ [index: string]: number } = initState, action: any) => {
