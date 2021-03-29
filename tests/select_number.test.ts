@@ -30,4 +30,9 @@ describe("number select reducer test", () => {
         const result = selectNumberReducer(state, {type: "SELECT_NUMBER_EVENT", line: 3, number: 3})
         expect(result["3"]).toBe(1);
     });
+
+    it('select number 1 on line 2, number 1 should be 2', (): void => {
+        const result = selectNumberReducer(state, {type: "SELECT_NUMBER_EVENT", line: 2, number: 1})
+        expect(result["1"]).toBe(2);
+    });
 });
