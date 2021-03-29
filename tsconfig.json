@@ -1,0 +1,43 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"module": "esnext",
+		"target": "esnext",
+		"jsx": "react",
+		"removeComments": true,
+		"lib": [
+			"es5",
+			"es6",
+			"esnext",
+			"dom"
+		],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": false,
+		"forceConsistentCasingInFileNames": true,
+		"allowSyntheticDefaultImports": true,
+		"noEmit": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"baseUrl": "."
+	},
+	"include": [
+		"next-env.d.ts",
+		"src/**/*"
+	],
+	"exclude": [
+		"node_modules",
+		"static",
+		"lib",
+		"util/lib",
+		"build",
+		"test",
+		"coverage",
+		"public",
+		".cache"
+	]
+}
