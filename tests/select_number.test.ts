@@ -1,8 +1,9 @@
 import {selectNumberReducer} from '../src/reducer';
 
 describe("number select reducer test", () => {
-    it('select number 1 should number 1 be not zero', () => {
-        let state: {[index: string]: number} = {
+    let state: {[index: string]: number}
+    beforeEach(() => {
+        state = {
             "1": 0,
             "2": 0,
             "3": 0,
@@ -13,8 +14,16 @@ describe("number select reducer test", () => {
             "8": 0,
             "9": 0
         }
+    })
 
+    it('select number 1 should number 1 be not zero', () => {
         const result = selectNumberReducer(state, {type: "SELECT_NUMBER_EVENT", line: 1, number: 0})
         expect(result["1"]).toBe(1);
     });
+
+    it('select number 2 should number 2 be not zero', (): void => {
+        const result = selectNumberReducer(state, {type: "SELECT_NUMBER_EVENT", line: 2, number: 0})
+        expect(result["2"]).toBe(1);
+    });
+
 });
