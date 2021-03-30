@@ -1,4 +1,4 @@
-const initState: { [index: string]: number } = {
+export const initState: { [index: string]: number } = {
     "1": 0,
     "2": 0,
     "3": 0,
