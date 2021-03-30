@@ -17,7 +17,6 @@ export const Context = React.createContext<any>({
 
 export const App: React.FunctionComponent = (): JSX.Element => {
     const [ numberReducer, dispatch ] = useReducer(selectNumberReducer, initState);
-
     const selectNumber =  (select: number) => () => {
         dispatch({
                      type: "SELECT_NUMBER_EVENT",

@@ -26,4 +26,5 @@ describe('app component test', () => {
 
         expect(getByText(/2$/i).className).toEqual("selected");
     });
+
 })
