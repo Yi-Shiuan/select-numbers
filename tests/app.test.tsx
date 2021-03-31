@@ -32,6 +32,7 @@ describe('app component test', () => {
         fireEvent.click(getAllByText(/1$/i)[0]);
 
         expect(getAllByText(/1$/i)[0].className).toEqual("selected");
+        expect(getAllByText(/1$/i)[0].disabled).toBeFalsy();
         expect(getAllByText(/1$/i)[1].disabled).toBeTruthy();
     });
 
@@ -40,6 +41,7 @@ describe('app component test', () => {
         fireEvent.click(getAllByText(/2$/i)[0]);
 
         expect(getAllByText(/2$/i)[0].className).toEqual("selected");
+        expect(getAllByText(/2$/i)[0].disabled).toBeFalsy();
         expect(getAllByText(/2$/i)[1].disabled).toBeTruthy();
     });
 
@@ -48,6 +50,7 @@ describe('app component test', () => {
         fireEvent.click(getAllByText(/3$/i)[0]);
 
         expect(getAllByText(/3$/i)[0].className).toEqual("selected");
+        expect(getAllByText(/3$/i)[0].disabled).toBeFalsy();
         expect(getAllByText(/3$/i)[1].disabled).toBeTruthy();
     });
 })

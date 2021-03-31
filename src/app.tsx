@@ -30,7 +30,7 @@ const NumberBlock = (props: NumberBlockType) => {
     }
 
     function isButtonDisabled(number: string) {
-        return numberReducer[number] > 0 ;
+        return numberReducer[number] > 0  && numberReducer[number] !== props.row;
     }
 
     function isSelected(number: string) {
