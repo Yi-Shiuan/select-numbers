@@ -5,14 +5,14 @@ describe("number unselect reducer test", () => {
     beforeEach(() => {
         state = {
             "1": 1,
-            "2": 0,
-            "3": 0,
-            "4": 0,
-            "5": 0,
-            "6": 0,
-            "7": 0,
-            "8": 0,
-            "9": 0,
+            "2": 1,
+            "3": 3,
+            "4": 2,
+            "5": 4,
+            "6": 5,
+            "7": 6,
+            "8": 7,
+            "9": 8,
             "10": 0
         }
     })
@@ -20,6 +20,11 @@ describe("number unselect reducer test", () => {
     it('unselect number 1, number 1 should be zero', () => {
         const result = selectNumberReducer(state, {type: "CANCEL_NUMBER_EVENT", number: 1})
         expect(result["1"]).toBe(0);
+    });
+
+    it('unselect number 2, number 2 should be zero', () => {
+        const result = selectNumberReducer(state, {type: "CANCEL_NUMBER_EVENT", number: 2})
+        expect(result["2"]).toBe(0);
     });
 
 });
