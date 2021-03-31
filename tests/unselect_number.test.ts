@@ -27,4 +27,9 @@ describe("number unselect reducer test", () => {
         expect(result["2"]).toBe(0);
     });
 
+    it('unselect number 3, number 3 should be zero', () => {
+        const result = selectNumberReducer(state, {type: "CANCEL_NUMBER_EVENT", number: 3})
+        expect(result["3"]).toBe(0);
+    });
+
 });
