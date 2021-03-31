@@ -9,8 +9,8 @@ describe('app component test', () => {
     })
     afterEach(cleanup)
 
-    it('component should be render number 10 button', () => {
-        expect(component.container.querySelectorAll("button").length).toBeGreaterThanOrEqual(10)
+    it('component should be render number 10 button and 4 areas', () => {
+        expect(component.container.querySelectorAll("button").length).toBeGreaterThanOrEqual(40)
     });
 
     it('when number 1 button click should be call context updated', (): void => {
@@ -52,5 +52,15 @@ describe('app component test', () => {
         expect(getAllByText(/3$/i)[0].className).toEqual("selected");
         expect(getAllByText(/3$/i)[0].disabled).toBeFalsy();
         expect(getAllByText(/3$/i)[1].disabled).toBeTruthy();
+    });
+
+    it('when line 1 number "1" is sedected other line number "1" should be disabled', (): void => {
+        const { getAllByText }: any = component;
+        fireEvent.click(getAllByText(/1$/i)[0]);
+
+        expect(getAllByText(/1$/i)[0].className).toEqual("selected");
+        expect(getAllByText(/1$/i)[0].disabled).toBeFalsy();
+        expect(getAllByText(/1$/i)[1].disabled).toBeTruthy();
+        expect(getAllByText(/1$/i)[2].disabled).toBeTruthy();
     });
 })
