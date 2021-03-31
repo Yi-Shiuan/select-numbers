@@ -18,6 +18,11 @@ export const selectNumberReducer = (state:{ [index: string]: number } = initStat
                 ...state,
                [action.number]: action.area
             }
+        case "CANCEL_NUMBER_EVENT":
+            return {
+                ...state,
+                ["1"]: 0
+            }
         default:
             return initState;
     }
