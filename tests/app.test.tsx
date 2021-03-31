@@ -35,4 +35,11 @@ describe('app component test', () => {
         expect(getAllByText(/1$/i)[1].disabled).toBeTruthy();
     });
 
+    it('when line 1 number "2" is sedected line 2 number "2" should be disabled', (): void => {
+        const { getAllByText }: any = component;
+        fireEvent.click(getAllByText(/2$/i)[0]);
+
+        expect(getAllByText(/2$/i)[0].className).toEqual("selected");
+        expect(getAllByText(/2$/i)[1].disabled).toBeTruthy();
+    });
 })

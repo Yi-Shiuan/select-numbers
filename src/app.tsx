@@ -29,8 +29,8 @@ const NumberBlock = (props: NumberBlockType) => {
                  })
     }
 
-    function isButtonDisabled() {
-        return numberReducer["1"]  === 1;
+    function isButtonDisabled(number: string) {
+        return numberReducer[number] > 0 ;
     }
 
     function isSelected(number: string) {
@@ -40,43 +40,43 @@ const NumberBlock = (props: NumberBlockType) => {
     return <div>
         <button onClick={ selectNumber(1) }
                 className={ classNames({ ["selected"]: isSelected("1") }) }
-                disabled={ isButtonDisabled() }>1
+                disabled={ isButtonDisabled("1") }>1
         </button>
         <button onClick={ selectNumber(2) }
                 className={ classNames({ ["selected"]: isSelected("2") }) }
-                disabled={ isButtonDisabled() }>2
+                disabled={ isButtonDisabled("2") }>2
         </button>
         <button onClick={ selectNumber(3) }
                 className={ classNames({ ["selected"]: isSelected("3") }) }
-                disabled={ isButtonDisabled() }>3
+                disabled={ isButtonDisabled("3") }>3
         </button>
         <button onClick={ selectNumber(4) }
                 className={ classNames({ ["selected"]: isSelected("4") }) }
-                disabled={ isButtonDisabled() }>4
+                disabled={ isButtonDisabled("4") }>4
         </button>
         <button onClick={ selectNumber(5) }
                 className={ classNames({ ["selected"]: isSelected("5") }) }
-                disabled={ isButtonDisabled() }>5
+                disabled={ isButtonDisabled("5") }>5
         </button>
         <button onClick={ selectNumber(6) }
                 className={ classNames({ ["selected"]: isSelected("6") }) }
-                disabled={ isButtonDisabled() }>6
+                disabled={ isButtonDisabled("6") }>6
         </button>
         <button onClick={ selectNumber(7) }
                 className={ classNames({ ["selected"]: isSelected("7") }) }
-                disabled={ isButtonDisabled() }>7
+                disabled={ isButtonDisabled("7") }>7
         </button>
         <button onClick={ selectNumber(8) }
                 className={ classNames({ ["selected"]: isSelected("8") }) }
-                disabled={ isButtonDisabled() }>8
+                disabled={ isButtonDisabled("8") }>8
         </button>
         <button onClick={ selectNumber(9) }
                 className={ classNames({ ["selected"]: isSelected("9") }) }
-                disabled={ isButtonDisabled() }>9
+                disabled={ isButtonDisabled("9") }>9
         </button>
         <button onClick={ selectNumber(10) }
                 className={ classNames({ ["selected"]: isSelected("10") }) }
-                disabled={ isButtonDisabled() }>10
+                disabled={ isButtonDisabled("10") }>10
         </button>
     </div>;
 }
