@@ -63,4 +63,14 @@ describe('app component test', () => {
         expect(getAllByText(/1$/i)[1].disabled).toBeTruthy();
         expect(getAllByText(/1$/i)[2].disabled).toBeTruthy();
     });
+
+    it('when area 2 number "1" is sedected other area number "1" should be disabled', (): void => {
+        const { getAllByText }: any = component;
+        fireEvent.click(getAllByText(/1$/i)[1]);
+
+        expect(getAllByText(/1$/i)[1].className).toEqual("selected");
+        expect(getAllByText(/1$/i)[1].disabled).toBeFalsy();
+        expect(getAllByText(/1$/i)[0].disabled).toBeTruthy();
+        expect(getAllByText(/1$/i)[2].disabled).toBeTruthy();
+    });
 })

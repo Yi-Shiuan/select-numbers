@@ -16,7 +16,7 @@ export const Context = React.createContext<any>({
                                                 });
 
 interface NumberBlockType {
-    row: number;
+    area: number;
 }
 
 const NumberBlock = (props: NumberBlockType) => {
@@ -27,23 +27,23 @@ const NumberBlock = (props: NumberBlockType) => {
     const selectNumber = (select: number) => () => {
         dispatch({
                      type: "SELECT_NUMBER_EVENT",
-                     area: 1,
+                     area: props.area,
                      number: select
                  })
     }
 
     function isButtonDisabled(number: string) {
-        return numberReducer[number] > 0 && numberReducer[number] !== props.row;
+        return numberReducer[number] > 0 && numberReducer[number] !== props.area;
     }
 
     function isSelected(number: string) {
-        return numberReducer[number] === 1;
+        return numberReducer[number] === props.area;
     }
 
     return <div>
         {
             [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ].map((item) => {
-                return <button onClick={ selectNumber(item) } key={ `${ props.row }${ item }` }
+                return <button onClick={ selectNumber(item) } key={ `${ props.area }${ item }` }
                                className={ classNames({ ["selected"]: isSelected(item.toString()) }) }
                                disabled={ isButtonDisabled(item.toString()) }> { item }
                 </button>
@@ -60,10 +60,10 @@ export const App: React.FunctionComponent = (): JSX.Element => {
         dispatch
     } }>
         <div>
-            <NumberBlock row={ 1 }/>
-            <NumberBlock row={ 2 }/>
-            <NumberBlock row={ 3 }/>
-            <NumberBlock row={ 4 }/>
+            <NumberBlock area={ 1 }/>
+            <NumberBlock area={ 2 }/>
+            <NumberBlock area={ 3 }/>
+            <NumberBlock area={ 4 }/>
         </div>
     </Context.Provider>
 };
