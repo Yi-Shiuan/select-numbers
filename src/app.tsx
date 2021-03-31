@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
 import { initState, selectNumberReducer } from "./reducer";
 
 export const Context = React.createContext<any>({
@@ -20,7 +20,7 @@ interface NumberBlockType {
 }
 
 const NumberBlock = (props: NumberBlockType) => {
-    const [ numberReducer, dispatch ] = useReducer(selectNumberReducer, initState);
+    const {numberReducer, dispatch}  = useContext(Context);
     const selectNumber = (select: number) => () => {
         dispatch({
                      type: "SELECT_NUMBER_EVENT",
@@ -28,17 +28,56 @@ const NumberBlock = (props: NumberBlockType) => {
                      number: select
                  })
     }
+
+    function isButtonDisabled() {
+        return numberReducer["1"]  === 1;
+    }
+
+    function isSelected(number: string) {
+        return numberReducer[number] === 1;
+    }
+
     return <div>
-        <button onClick={ selectNumber(1) } className={ classNames({ ["selected"]: numberReducer["1"] === 1 }) }>1</button>
-        <button onClick={ selectNumber(2) } className={ classNames({ ["selected"]: numberReducer["2"] === 1 }) }>2</button>
-        <button onClick={ selectNumber(3) } className={ classNames({ ["selected"]: numberReducer["3"] === 1 }) }>3</button>
-        <button onClick={ selectNumber(4) } className={ classNames({ ["selected"]: numberReducer["4"] === 1 }) }>4</button>
-        <button onClick={ selectNumber(5) } className={ classNames({ ["selected"]: numberReducer["5"] === 1 }) }>5</button>
-        <button onClick={ selectNumber(6) } className={ classNames({ ["selected"]: numberReducer["6"] === 1 }) }>6</button>
-        <button onClick={ selectNumber(7) } className={ classNames({ ["selected"]: numberReducer["7"] === 1 }) }>7</button>
-        <button onClick={ selectNumber(8) } className={ classNames({ ["selected"]: numberReducer["8"] === 1 }) }>8</button>
-        <button onClick={ selectNumber(9) } className={ classNames({ ["selected"]: numberReducer["9"] === 1 }) }>9</button>
-        <button onClick={ selectNumber(10) } className={ classNames({ ["selected"]: numberReducer["10"] === 1 }) }>10</button>
+        <button onClick={ selectNumber(1) }
+                className={ classNames({ ["selected"]: isSelected("1") }) }
+                disabled={ isButtonDisabled() }>1
+        </button>
+        <button onClick={ selectNumber(2) }
+                className={ classNames({ ["selected"]: isSelected("2") }) }
+                disabled={ isButtonDisabled() }>2
+        </button>
+        <button onClick={ selectNumber(3) }
+                className={ classNames({ ["selected"]: isSelected("3") }) }
+                disabled={ isButtonDisabled() }>3
+        </button>
+        <button onClick={ selectNumber(4) }
+                className={ classNames({ ["selected"]: isSelected("4") }) }
+                disabled={ isButtonDisabled() }>4
+        </button>
+        <button onClick={ selectNumber(5) }
+                className={ classNames({ ["selected"]: isSelected("5") }) }
+                disabled={ isButtonDisabled() }>5
+        </button>
+        <button onClick={ selectNumber(6) }
+                className={ classNames({ ["selected"]: isSelected("6") }) }
+                disabled={ isButtonDisabled() }>6
+        </button>
+        <button onClick={ selectNumber(7) }
+                className={ classNames({ ["selected"]: isSelected("7") }) }
+                disabled={ isButtonDisabled() }>7
+        </button>
+        <button onClick={ selectNumber(8) }
+                className={ classNames({ ["selected"]: isSelected("8") }) }
+                disabled={ isButtonDisabled() }>8
+        </button>
+        <button onClick={ selectNumber(9) }
+                className={ classNames({ ["selected"]: isSelected("9") }) }
+                disabled={ isButtonDisabled() }>9
+        </button>
+        <button onClick={ selectNumber(10) }
+                className={ classNames({ ["selected"]: isSelected("10") }) }
+                disabled={ isButtonDisabled() }>10
+        </button>
     </div>;
 }
 
@@ -51,7 +90,8 @@ export const App: React.FunctionComponent = (): JSX.Element => {
         dispatch
     } }>
         <div>
-            <NumberBlock row={1}/>
+            <NumberBlock row={ 1 }/>
+            <NumberBlock row={ 2 }/>
         </div>
     </Context.Provider>
 };
