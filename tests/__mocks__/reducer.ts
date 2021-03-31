@@ -13,6 +13,7 @@ export const initState: { [index: string]: number } = {
 
 export const selectNumberReducer = (state:{ [index: string]: number } = initState , action: any) => {
     return {
+        ...state,
         [action.number]: action.area
     }
 }
