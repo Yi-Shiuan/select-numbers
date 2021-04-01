@@ -18,17 +18,17 @@ describe("number unselect reducer test", () => {
     })
 
     it('unselect number 1, number 1 should be zero', () => {
-        const result = selectNumberReducer(state, {type: "CANCEL_NUMBER_EVENT", number: 1})
+        const result = selectNumberReducer(state, {type: "UNSELECT_NUMBER_EVENT", number: 1})
         expect(result["1"]).toBe(0);
     });
 
     it('unselect number 2, number 2 should be zero', () => {
-        const result = selectNumberReducer(state, {type: "CANCEL_NUMBER_EVENT", number: 2})
+        const result = selectNumberReducer(state, {type: "UNSELECT_NUMBER_EVENT", number: 2})
         expect(result["2"]).toBe(0);
     });
 
     it('unselect number 3, number 3 should be zero', () => {
-        const result = selectNumberReducer(state, {type: "CANCEL_NUMBER_EVENT", number: 3})
+        const result = selectNumberReducer(state, {type: "UNSELECT_NUMBER_EVENT", number: 3})
         expect(result["3"]).toBe(0);
     });
 

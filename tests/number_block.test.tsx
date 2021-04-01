@@ -3,9 +3,9 @@ import React, { useReducer } from 'react';
 import { Context } from "../src/app";
 import { NumberBlock } from '../src/numberBlock'
 // eslint-disable-next-line jest/no-mocks-import
-import { selectNumberReducer } from "./__mocks__/reducer";
+import { initState, selectNumberReducer } from "./__mocks__/reducer";
 
-const TestingComponent = (props: { [index: string]: number }) => {
+const TestingComponent = (props: { [index: string]: number } = initState) => {
     const [ numberReducer, dispatch ] = useReducer(selectNumberReducer, props);
     return <Context.Provider value={ {
         numberReducer,
@@ -24,8 +24,13 @@ const TestingComponent = (props: { [index: string]: number }) => {
 
 describe('number block component test', () => {
     afterEach(cleanup)
-    function getRender() {
-        return  render(<TestingComponent/>);
+    const getRender = () => render(<TestingComponent/>);
+    const getNumberAlreadySelected = () => {
+        const component = render(<TestingComponent/>);
+
+        fireEvent.click(component.getAllByText(/1$/i)[0]);
+
+        return component;
     }
     it('component should be render number 10 button and 4 areas', () => {
         const component = getRender();
@@ -91,5 +96,15 @@ describe('number block component test', () => {
         expect(getAllByText(/1$/i)[1].disabled).toBeFalsy();
         expect(getAllByText(/1$/i)[0].disabled).toBeTruthy();
         expect(getAllByText(/1$/i)[2].disabled).toBeTruthy();
+    });
+
+    it('when number 1 already selected, click number 1 should be unselect', (): void => {
+        const { getAllByText }: any = getNumberAlreadySelected();
+        fireEvent.click(getAllByText(/1$/i)[0]);
+
+        expect(getAllByText(/1$/i)[0].className).toBe("");
+        expect(getAllByText(/1$/i)[0].disabled).toBeFalsy();
+        expect(getAllByText(/1$/i)[1].disabled).toBeFalsy();
+        expect(getAllByText(/1$/i)[2].disabled).toBeFalsy();
     });
 })

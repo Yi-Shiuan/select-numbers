@@ -13,6 +13,14 @@ export const NumberBlock = (props: NumberBlockType) => {
     } = useContext(Context);
 
     const selectNumber = (number: number) => () => {
+        if (numberReducer[number] === props.area) {
+            dispatch({
+                         type: "UNSELECT_NUMBER_EVENT",
+                         number: number
+                     })
+            return;
+        }
+
         dispatch({
                      type: "SELECT_NUMBER_EVENT",
                      area: props.area,

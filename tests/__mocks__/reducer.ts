@@ -12,8 +12,12 @@ export const initState: { [index: string]: number } = {
 }
 
 export const selectNumberReducer = (state:{ [index: string]: number } = initState , action: any) => {
+    console.info(action, {
+                     ...state,
+                     [action.number]: action.area ?? 0
+                 })
     return {
         ...state,
-        [action.number]: action.area
+        [action.number]: action.area ?? 0
     }
 }
