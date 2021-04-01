@@ -25,10 +25,10 @@ const TestingComponent = (props: { [index: string]: number } = initState) => {
 describe('number block component test', () => {
     afterEach(cleanup)
     const getRender = () => render(<TestingComponent/>);
-    const getNumberAlreadySelected = () => {
+    const getNumberAlreadySelected = (reg: RegExp, area: number) => {
         const component = render(<TestingComponent/>);
 
-        fireEvent.click(component.getAllByText(/1$/i)[0]);
+        fireEvent.click(component.getAllByText(reg)[area - 1]);
 
         return component;
     }
@@ -99,12 +99,32 @@ describe('number block component test', () => {
     });
 
     it('when number 1 already selected, click number 1 should be unselect', (): void => {
-        const { getAllByText }: any = getNumberAlreadySelected();
+        const { getAllByText }: any = getNumberAlreadySelected(/1$/i, 1);
         fireEvent.click(getAllByText(/1$/i)[0]);
 
         expect(getAllByText(/1$/i)[0].className).toBe("");
         expect(getAllByText(/1$/i)[0].disabled).toBeFalsy();
         expect(getAllByText(/1$/i)[1].disabled).toBeFalsy();
         expect(getAllByText(/1$/i)[2].disabled).toBeFalsy();
+    });
+
+    it('when number 2 already selected, click number 2 should be unselect', (): void => {
+        const { getAllByText }: any = getNumberAlreadySelected(/2$/i, 1);
+        fireEvent.click(getAllByText(/2$/i)[0]);
+
+        expect(getAllByText(/2$/i)[0].className).toBe("");
+        expect(getAllByText(/2$/i)[0].disabled).toBeFalsy();
+        expect(getAllByText(/2$/i)[1].disabled).toBeFalsy();
+        expect(getAllByText(/2$/i)[2].disabled).toBeFalsy();
+    });
+
+    it('when area 2 number 2 already selected, click number 2 should be unselect', (): void => {
+        const { getAllByText }: any = getNumberAlreadySelected(/2$/i, 2);
+        fireEvent.click(getAllByText(/2$/i)[1]);
+
+        expect(getAllByText(/2$/i)[1].className).toBe("");
+        expect(getAllByText(/2$/i)[1].disabled).toBeFalsy();
+        expect(getAllByText(/2$/i)[0].disabled).toBeFalsy();
+        expect(getAllByText(/2$/i)[2].disabled).toBeFalsy();
     });
 })
