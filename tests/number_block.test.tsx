@@ -32,6 +32,23 @@ describe('number block component test', () => {
 
         return component;
     }
+    const getNumberAreaSelected = () => {
+        const component = render(<TestingComponent/>);
+
+        fireEvent.click(component.getAllByText(/1$/i)[0]);
+        fireEvent.click(component.getAllByText(/2$/i)[0]);
+
+        fireEvent.click(component.getAllByText(/3$/i)[1]);
+        fireEvent.click(component.getAllByText(/4$/i)[1]);
+
+        fireEvent.click(component.getAllByText(/5$/i)[2]);
+        fireEvent.click(component.getAllByText(/6$/i)[2]);
+
+        fireEvent.click(component.getAllByText(/7$/i)[3]);
+        fireEvent.click(component.getAllByText(/8$/i)[3]);
+
+        return component;
+    }
     it('component should be render number 10 button and 4 areas', () => {
         const component = getRender();
         expect(component.container.querySelectorAll("button").length).toBeGreaterThanOrEqual(40)
@@ -122,9 +139,25 @@ describe('number block component test', () => {
         const { getAllByText }: any = getNumberAlreadySelected(/2$/i, 2);
         fireEvent.click(getAllByText(/2$/i)[1]);
 
-        expect(getAllByText(/2$/i)[1].className).toBe("");
+        expect(getAllByText(/1$/i)[1].className).toBe("");
         expect(getAllByText(/2$/i)[1].disabled).toBeFalsy();
         expect(getAllByText(/2$/i)[0].disabled).toBeFalsy();
         expect(getAllByText(/2$/i)[2].disabled).toBeFalsy();
+    });
+
+    it('when area 1 reset button click, the area selected number should be clean', (): void => {
+        const { getAllByText }: any = getNumberAreaSelected();
+        fireEvent.click(getAllByText(/reset/i)[0]);
+
+        expect(getAllByText(/1$/i)[0].className).toBe("");
+        expect(getAllByText(/2$/i)[0].className).toBe("");
+    });
+
+    it('when area 2 reset button click, the area selected number should be clean', (): void => {
+        const { getAllByText }: any = getNumberAreaSelected();
+        fireEvent.click(getAllByText(/reset/i)[1]);
+
+        expect(getAllByText(/3$/i)[0].className).toBe("");
+        expect(getAllByText(/4$/i)[0].className).toBe("");
     });
 })

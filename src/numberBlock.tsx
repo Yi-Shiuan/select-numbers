@@ -28,6 +28,17 @@ export const NumberBlock = (props: NumberBlockType) => {
                  })
     }
 
+    function resetNumber() {
+        [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ].map((item) => {
+            if (numberReducer[item] === props.area) {
+                dispatch({
+                             type: "UNSELECT_NUMBER_EVENT",
+                             number: item
+                         })
+            }
+        });
+    }
+
     function isButtonDisabled(number: string) {
         return numberReducer[number] > 0 && numberReducer[number] !== props.area;
     }
@@ -45,6 +56,7 @@ export const NumberBlock = (props: NumberBlockType) => {
                 </button>
             })
         }
+        <button onClick={resetNumber}>reset</button>
     </div>;
 }
 
